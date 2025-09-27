@@ -1,6 +1,6 @@
 .idea
 
 .bsp
-.metals
+.metals/
 .scala-build
 .vscode
