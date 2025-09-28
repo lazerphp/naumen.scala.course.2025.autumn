@@ -1,3 +1,4 @@
+import scala.math.pow
 object Exercises {
 
     /*ПРИМЕР*/
@@ -16,7 +17,12 @@ object Exercises {
     /*Реализовать функцию, которая возвращает сумму всех целых чисел в заданном диапазоне (от iForm до iTo), которые делятся
     на 3 или на 5.*/
     /*Реализовать юнит-тесты в src/test/scala для данной функции.*/
-    def sumOfDivBy3Or5(iFrom: Int, iTo: Int): Long = ???
+    def sumOfDivBy3Or5(iFrom: Int, iTo: Int): Long = {
+        val res = (for {i <- iFrom to iTo
+              if i % 3 == 0 || i % 5 == 0
+        } yield i).sum
+        res
+    }
 
 
 
@@ -25,7 +31,16 @@ object Exercises {
     Число 80 раскладывается на множители 1 * 2 * 2 * 2 * 2 * 5, результат выполнения функции => Seq(2, 5).
     Число 98 можно разложить на множители 1 * 2 * 7 * 7, результат выполнения функции => Seq(2, 7).*/
     /*Реализовать юнит-тесты в src/test/scala для данной функции.*/
-    def primeFactor(number: Int): Seq[Int] = ???
+    def primeFactor(number: Int): Seq[Int] = {
+
+        val isPrime: (Int) => Boolean = 
+            n => !(2 to math.sqrt(n).toInt).exists(n % _ == 0)
+        val res: Seq[Int] = for {
+            i <- 2 to pow(number, 0.5).toInt if number % i == 0 && isPrime(i)
+            // _ <- 1 until number / i
+        } yield i
+        res
+    }
 
 
 
@@ -73,4 +88,10 @@ object Exercises {
 
     def sortByHeavyweight(ballsArray: Map[String, (Int, Double)] = balls): Seq[String] = ???
 
+}
+
+object Idk extends App {
+    println(Exercises.sumOfDivBy3Or5(1, 5))
+    println(Exercises.sumOfDivBy3Or5(1, 10))
+    println(Exercises.primeFactor(98))
 }
