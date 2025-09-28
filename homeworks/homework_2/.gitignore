@@ -1,3 +1,10 @@
 /.idea
+
 /target
 project/target
+
+.bloop/
+.metals/
+.vscode/
+.scala-build/
+.bsp/
